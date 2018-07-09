@@ -1,2 +1,2 @@
-# telomereproject
-https://thetelomereproject.com
+# The Telomere Project
+https://thetelomereproject.org
