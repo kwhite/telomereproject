@@ -1,0 +1,32 @@
+{
+    "name": "kat/telomereproject",
+    "description": "Plugin management for The Telomere Project WordPress site.",
+    "authors": [
+        {
+            "name": "Katherine White",
+            "email": "katherine@kanopistudios.com"
+        }
+    ],
+    "repositories":[
+        {
+            "type":"composer",
+            "url":"https://wpackagist.org"
+        }
+    ],
+    "require": {
+        "wpackagist-plugin/wordpress-seo": "^9.2",
+        "wpackagist-plugin/the-events-calendar": "4.6.26.1",
+        "wpackagist-plugin/jetpack": "^6.7",
+        "wpackagist-plugin/better-wp-security": "^7.2",
+        "wpackagist-plugin/ninja-forms": "^3.3",
+        "wpackagist-plugin/wp-super-cache": "^1.6",
+        "wpackagist-plugin/godaddy-email-marketing-sign-up-forms":"^1.3.0",
+        "wpackagist-plugin/contact-widgets":"^1.5.2",
+        "wpackagist-plugin/easy-paypal-donation":"^1.2.9"
+    },
+    "require-dev": {
+        "wpackagist-plugin/wordpress-importer": "^0.6.4",
+        "wpackagist-plugin/query-monitor": "^3.1",
+        "wpackagist-plugin/duplicator":"dev-trunk"
+    }
+}
