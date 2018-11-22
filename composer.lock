@@ -4,7 +4,6 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "1f4d8d14de60c4abd95d38993ea5c8a1",
     "content-hash": "3d69b22d8dde65fee533e38c657e693c",
     "packages": [
         {
@@ -125,7 +124,7 @@
                 "zend",
                 "zikula"
             ],
-            "time": "2018-08-27 06:10:37"
+            "time": "2018-08-27T06:10:37+00:00"
         },
         {
             "name": "wpackagist-plugin/better-wp-security",
@@ -328,7 +327,7 @@
             },
             "type": "wordpress-plugin",
             "homepage": "https://wordpress.org/plugins/duplicator/",
-            "time": "2018-10-19 17:59:52"
+            "time": "2018-10-19T17:59:52+00:00"
         },
         {
             "name": "wpackagist-plugin/query-monitor",
