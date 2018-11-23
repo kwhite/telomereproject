@@ -1,0 +1,148 @@
+#!/usr/bin/env bash
+
+## Initialize a Docksal powered WordPress site
+##
+## Usage: fin init
+
+# Abort if anything fails
+set -e
+
+#-------------------------- Settings --------------------------------
+
+# PROJECT_ROOT is passed from fin.
+# The following variables are configured in the '.env' file: DOCROOT, VIRTUAL_HOST.
+
+DOCROOT_PATH="${PROJECT_ROOT}/${DOCROOT}"
+
+#-------------------------- END: Settings --------------------------------
+
+#-------------------------- Helper functions --------------------------------
+
+# Console colors
+red='\033[0;31m'
+green='\033[0;32m'
+green_bg='\033[42m'
+yellow='\033[1;33m'
+NC='\033[0m'
+
+echo-red () { echo -e "${red}$1${NC}"; }
+echo-green () { echo -e "${green}$1${NC}"; }
+echo-green-bg () { echo -e "${green_bg}$1${NC}"; }
+echo-yellow () { echo -e "${yellow}$1${NC}"; }
+
+is_windows ()
+{
+	local res=$(uname | grep 'CYGWIN_NT')
+	if [[ "$res" != "" ]]; then
+		return 0
+	else
+		return 1
+	fi
+}
+
+#-------------------------- END: Helper functions --------------------------------
+
+#-------------------------- Functions --------------------------------
+
+# Generate wp-config.php file
+generate_config ()
+{
+	cd $DOCROOT_PATH
+	if ! is_wordpress; then
+		fin wp core download
+	fi
+	fin exec "rm -f wp-config.php"
+	fin wp core config --dbname=${MYSQL_DATABASE} --dbuser=${MYSQL_USER} --dbpass=${MYSQL_PASSWORD} --dbhost=db
+}
+
+# Install site
+site_install ()
+{
+	cd $DOCROOT_PATH
+
+	fin wp core install \
+		--url=${VIRTUAL_HOST} \
+		--title='My WordPress Site' \
+		--admin_user=${WP_ADMIN_USER} \
+		--admin_password=${WP_ADMIN_PASS} \
+		--admin_email=${WP_ADMIN_EMAIL}
+
+	fin hosts remove ${VIRTUAL_HOST}
+	fin hosts add ${VIRTUAL_HOST}
+}
+
+is_wordpress ()
+{
+	cd $DOCROOT_PATH
+	fin wp core version
+	RESULT=$?
+	return $RESULT
+}
+
+site_refresh ()
+{
+	cd $DOCROOT_PATH
+	echo -e "${NC}Installing composer dependencies...${NC}"
+	fin exec "composer install"
+	# get the database
+	# ssh to server - make sure your SSH key is tied to the account
+	# and in place locally (add to README) -- support password option?
+	# ssh -i ${SSH_KEY_PATH} ${SSH_USER}@${PROD_DOMAIN}
+	#echo -e "${NC}$Connecting to production server...${NC}"
+	#ssh ${SSH_USER}@${PROD_DOMAIN}
+	# do sql dump: https://www.godaddy.com/help/exporting-mysql-database-in-ssh-26367
+	#echo -e "${NC}${green}Downloading database...${NC}"
+	#mysqldump -u ${PROD_MYSQL_USER} -p${PROD_MYSQL_PASSWORD} ${PROD_MYSQL_DATABASE} > mysql.sql
+	#exit
+	# download file
+	# scp -i ${SSH_KEY_PATH} ${SSH_USER}@${PROD_DOMAIN}:mysql.sql ./
+	#scp ${SSH_USER}@${PROD_DOMAIN}:mysql.sql ./
+	fin wp db import mysql.sql
+	fin wp search-replace ${PROD_PROTOCOL}://${PROD_DOMAIN} ${VIRTUAL_HOST}
+	# Rewrite admin u/p to local db settings
+	fin wp user update 1 --user_pass=${WP_ADMIN_PASS} --user_login=${WP_ADMIN_USER} --user_email=${WP_ADMIN_EMAIL}
+	# generate the default .htaccess file
+	fin wp rewrite structure
+	fin wp cache flush
+}
+
+#-------------------------- END: Functions --------------------------------
+
+#-------------------------- Execution --------------------------------
+
+if [[ "$PROJECT_ROOT" == "" ]]; then
+	echo-red "\$PROJECT_ROOT is not set"
+	exit 1
+fi
+
+if [[ $DOCKER_RUNNING == "true" ]]; then
+	echo -e "${green_bg} Step 1 ${NC}${green} Recreating services...${NC}"
+	fin reset -f
+else
+	echo -e "${green_bg} Step 1 ${NC}${green} Creating services...${NC}"
+	fin up
+fi
+
+echo "Waiting 10s for MySQL to initialize...";
+sleep 10
+
+# Project initialization steps
+echo -e "${green_bg} Step 2 ${NC}${green} Generating wp-config.php...${NC}"
+generate_config
+
+echo -e "${green_bg} Step 3 ${NC}${green} Installing site...${NC}"
+time site_install
+time site_refresh
+
+
+if is_windows; then
+	echo-green "Add ${VIRTUAL_HOST} to your hosts file (/etc/hosts), e.g.:"
+	echo-green "192.168.64.100  ${VIRTUAL_HOST}"
+	echo
+fi
+
+echo -en "${green_bg} DONE! ${NC} "
+echo -e "Open ${yellow}http://${VIRTUAL_HOST}${NC} in your browser to verify the setup."
+echo -e "Admin panel: ${yellow}http://${VIRTUAL_HOST}/wp-admin${NC}. User/password: ${yellow}${WP_ADMIN_USER}/${WP_ADMIN_PASS}${NC}  "
+
+#-------------------------- END: Execution --------------------------------

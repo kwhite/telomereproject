@@ -28,8 +28,6 @@
 /*
 !wp-content/
 !docs/
-!.docksal/
-!.docksal/*
 
 # ignore everything in the "wp-content" directory, except:
 # mu-plugins, plugins, and themes directories
@@ -49,12 +47,18 @@ wp-content/themes/*
 .*
 ~*
 
+
+
 # ignore node dependency directories (used by grunt)
 node_modules/
 
 # ignore OS generated files
 ehthumbs.db
 Thumbs.db
+
+!.docksal/
+!.docksal/*
+.docksal/.*
 
 # ignore Editor files
 *.sublime-project
