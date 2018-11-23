@@ -24,7 +24,8 @@
         "wpackagist-plugin/contact-widgets":"^1.5.2",
         "wpackagist-plugin/easy-paypal-donation":"^1.2.9",
         "wpackagist-plugin/relevanssi": "4.1.1.2",
-        "wpackagist-plugin/redirection": "^3.6"
+        "wpackagist-plugin/redirection": "^3.6",
+        "wpackagist-plugin/beaver-builder-lite-version": "2.1.6.3"
     },
     "require-dev": {
         "wpackagist-plugin/wordpress-importer": "^0.6.4",

@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "1aa08f6a83773a5a97b109e8546c7a43",
-    "content-hash": "cb42fe2c7aae9c690068e6e70a1ebcfb",
+    "hash": "7c0ef3940cbcbfe4a2fb08f205957a2f",
+    "content-hash": "fe17959f7ce152bac53bf69cd3f78214",
     "packages": [
         {
             "name": "composer/installers",
@@ -126,6 +126,26 @@
                 "zikula"
             ],
             "time": "2018-08-27 06:10:37"
+        },
+        {
+            "name": "wpackagist-plugin/beaver-builder-lite-version",
+            "version": "2.1.6.3",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/beaver-builder-lite-version/",
+                "reference": "tags/2.1.6.3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/beaver-builder-lite-version.2.1.6.3.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "require": {
+                "composer/installers": "~1.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/beaver-builder-lite-version/"
         },
         {
             "name": "wpackagist-plugin/better-wp-security",
@@ -258,7 +278,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://downloads.wordpress.org/plugin/redirection.3.6.3.zip",
-                "reference": null,
+                "reference": "tags/3.6.3",
                 "shasum": null
             },
             "require": {
