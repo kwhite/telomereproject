@@ -1,9 +1,19 @@
 /*
 Theme Name:     The Telomere Project
-Theme URI:      
+Theme URI:
 Description:    Econature child theme.
 Author:         Me
-Author URI:     
+Author URI:
 Template:       econature
 Version:        0.1.0
 */
+@import url("/wp-content/themes/econature/style.css");
+
+.portfolio .project .project_outer .project_inner {
+  position: absolute;
+  background: linear-gradient(transparent, #404040);
+  border:0;
+  bottom: 0;
+  left: 0;
+  right:0;
+}

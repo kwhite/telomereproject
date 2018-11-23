@@ -35,7 +35,7 @@ Should you wish to change any of these settings for your local environment, plea
 
 1. Download a copy of the site database from the most recent restore point in WP Engine. The credentials are stored in LastPass. Put the file in your project root. Then run the following commands.
     ```
-    cd certent
+    cd telomereproject
     fin wp db import mysql.sql
     fin wp search-replace 'https://thetelomereproject.org' 'http://telomere.docksal'
     ```

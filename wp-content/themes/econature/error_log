@@ -1,8 +1,0 @@
-[11-Feb-2018 04:37:22 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function get_header() in /home/t3lom3r3/public_html/wp-content/themes/econature/index.php:13
-Stack trace:
-#0 {main}
-  thrown in /home/t3lom3r3/public_html/wp-content/themes/econature/index.php on line 13
-[06-May-2018 23:52:46 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function get_header() in /home/t3lom3r3/public_html/wp-content/themes/econature/404.php:13
-Stack trace:
-#0 {main}
-  thrown in /home/t3lom3r3/public_html/wp-content/themes/econature/404.php on line 13
