@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "dbdaf77639a4aca7d6b76c4da266f02d",
-    "content-hash": "a42f23ffceef08849608d0ffdac50f38",
+    "hash": "1aa08f6a83773a5a97b109e8546c7a43",
+    "content-hash": "cb42fe2c7aae9c690068e6e70a1ebcfb",
     "packages": [
         {
             "name": "composer/installers",
@@ -248,6 +248,46 @@
             "homepage": "https://wordpress.org/plugins/ninja-forms/"
         },
         {
+            "name": "wpackagist-plugin/redirection",
+            "version": "3.6.3",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/redirection/",
+                "reference": "tags/3.6.3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/redirection.3.6.3.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "require": {
+                "composer/installers": "~1.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/redirection/"
+        },
+        {
+            "name": "wpackagist-plugin/relevanssi",
+            "version": "4.1.1.2",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/relevanssi/",
+                "reference": "tags/4.1.1.2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/relevanssi.4.1.1.2.zip",
+                "reference": "tags/4.1.1.2",
+                "shasum": null
+            },
+            "require": {
+                "composer/installers": "~1.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/relevanssi/"
+        },
+        {
             "name": "wpackagist-plugin/the-events-calendar",
             "version": "4.6.26.1",
             "source": {
@@ -320,7 +360,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://downloads.wordpress.org/plugin/cdn-image-proxy.zip?timestamp=1518790931",
-                "reference": null,
+                "reference": "trunk",
                 "shasum": null
             },
             "require": {
@@ -340,7 +380,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://downloads.wordpress.org/plugin/duplicator.zip?timestamp=1539971992",
-                "reference": null,
+                "reference": "trunk",
                 "shasum": null
             },
             "require": {
@@ -361,7 +401,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://downloads.wordpress.org/plugin/query-monitor.3.1.1.zip",
-                "reference": null,
+                "reference": "tags/3.1.1",
                 "shasum": null
             },
             "require": {
@@ -381,7 +421,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://downloads.wordpress.org/plugin/wordpress-importer.0.6.4.zip",
-                "reference": null,
+                "reference": "tags/0.6.4",
                 "shasum": null
             },
             "require": {
